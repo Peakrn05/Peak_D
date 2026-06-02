@@ -10,11 +10,12 @@ import { PlusOutlined, CalendarOutlined } from "@ant-design/icons";
 import Link from "next/link";
 import { useGetReservations } from "@/hooks/reservation/useGetReservations";
 import { useGetPets } from "@/hooks/pet/useGetPets";
+import { OrderStatus } from "@/types/api/main/common";
 
 export default function DashboardPage() {
   const { pets, isLoading: petsLoading } = useGetPets();
   const { reservations, isLoading: reservationsLoading } = useGetReservations({
-    status: "CONFIRMED",
+    status: OrderStatus.CONFIRMED,
   });
 
   return (

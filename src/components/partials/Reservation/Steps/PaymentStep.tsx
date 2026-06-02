@@ -7,7 +7,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Card, Button, Statistic, Space, message, Spin, Tabs } from "antd";
+import { Card, Button, message, Spin, Tabs } from "antd";
 import { QrcodeOutlined, CheckCircleOutlined, ClockCircleOutlined } from "@ant-design/icons";
 import QRCode from "qrcode.react";
 import type { Service } from "@/types/app/reservation";
@@ -23,10 +23,10 @@ export default function PaymentStep({
   totalPrice,
 }: PaymentStepProps) {
   const [paymentMethod, setPaymentMethod] = useState<"promptpay" | "bank">("promptpay");
-  const [orderId, setOrderId] = useState("ORD-2024-001"); // In real app, comes from reservation
+  const [orderId] = useState("ORD-2024-001"); // In real app, comes from reservation
   const [paymentConfirmed, setPaymentConfirmed] = useState(false);
 
-  const { qrCodeUrl, referenceId, expiresIn, generateQR, isLoading } =
+  const { referenceId, expiresIn, generateQR, isLoading } =
     useGenerateQRPayment();
 
   // Generate QR on mount
@@ -41,7 +41,8 @@ export default function PaymentStep({
     setPaymentConfirmed(true);
   };
 
-  const promptPayQRValue = `00020126360014th.co.th.bot.bk001302820200201110300012100201110300212100200201110900010410200000053037045502210111.26300115600050699010199000000000000000000046000634000000000065080070000000000007080160170000000000008170013131000010208ORD-2024-001530376540618.0062280106081200707152203631153037045403780540${totalPrice}5802TH62840155D79E010B9E5630477EFA`;
+  // PromptPay QR payload (EMVCo format used by Thai banks)
+  const promptPayQRValue = `promptpay://0812345678?amount=${totalPrice}&ref=${orderId}`;
 
   return (
     <div className="space-y-6">
@@ -101,7 +102,7 @@ export default function PaymentStep({
                     <div className="flex justify-center mb-4">
                       <div className="bg-white p-4 rounded-lg border-2 border-gray-200">
                         <QRCode
-                          value={`promptpay://0812345678/฿${totalPrice}`}
+                          value={promptPayQRValue}
                           size={256}
                           level="H"
                           includeMargin={true}

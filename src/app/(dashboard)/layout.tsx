@@ -4,6 +4,8 @@
  * Uses Ant Design for navigation
  */
 
+"use client";
+
 import { Layout, Menu } from "antd";
 import { HomeOutlined, CalendarOutlined, PlusOutlined, UserOutlined } from "@ant-design/icons";
 import Link from "next/link";

@@ -50,6 +50,8 @@ export interface ReservationFormValues {
   scheduledDate: string;
   scheduledTime: string;
   pickupAddress: string;
+  pickupLatitude?: number;
+  pickupLongitude?: number;
   specialRequests?: string;
 }
 

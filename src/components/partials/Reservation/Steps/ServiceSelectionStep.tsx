@@ -7,7 +7,7 @@
 
 "use client";
 
-import { Card, Button, Space, Empty, Skeleton } from "antd";
+import { Card, Empty, Skeleton } from "antd";
 import { CheckCircleOutlined, CheckOutlined } from "@ant-design/icons";
 import type { Service } from "@/types/app/reservation";
 import { SERVICE_ICONS, SERVICE_COLORS } from "../Reservation.config";

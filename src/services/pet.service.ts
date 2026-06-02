@@ -20,7 +20,7 @@ export const getPetsService = async (
   params?: PetListParams,
 ): Promise<{ pets: Pet[]; total: number }> => {
   try {
-    const response = await getPetsApi(params);
+    const response = await getPetsApi(params as Record<string, unknown>);
 
     if (!response.data.success) {
       throw new Error(response.data.message || "Failed to fetch pets");

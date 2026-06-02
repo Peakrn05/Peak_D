@@ -13,7 +13,7 @@ import { useGetServices } from "@/hooks/reservation/useGetServices";
 import { useCreateReservation } from "@/hooks/reservation/useCreateReservation";
 import type { Service, ReservationFormValues } from "@/types/app/reservation";
 import type { Pet } from "@/types/app/pet";
-import { BOOKING_STEPS, SERVICE_ICONS, SERVICE_COLORS } from "./Reservation.config";
+import { BOOKING_STEPS } from "./Reservation.config";
 import ServiceSelectionStep from "./Steps/ServiceSelectionStep";
 import DateTimeStep from "./Steps/DateTimeStep";
 import PickupStep from "./Steps/PickupStep";
@@ -48,11 +48,11 @@ export default function BookingContent() {
       };
 
       createReservation(bookingData, {
-        onSuccess: (reservation) => {
+        onSuccess: () => {
           message.success("Booking created! Proceed to payment.");
           setStep(step + 1);
         },
-        onError: (error) => {
+        onError: (error: Error) => {
           message.error(error.message || "Booking failed");
         },
       });

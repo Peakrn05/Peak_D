@@ -70,14 +70,14 @@ export const getReservationsService = async (
   params?: ReservationListParams,
 ): Promise<{ reservations: Reservation[]; total: number }> => {
   try {
-    const response = await getReservationsApi(params);
+    const response = await getReservationsApi(params as Record<string, unknown>);
 
     if (!response.data.success) {
       throw new Error(response.data.message || "Failed to fetch reservations");
     }
 
     return {
-      reservations: response.data.data.content || [],
+      reservations: (response.data.data.content || []) as unknown as Reservation[],
       total: response.data.data.totalElements || 0,
     };
   } catch (error) {
@@ -100,7 +100,7 @@ export const getReservationService = async (
       throw new Error(response.data.message || "Failed to fetch reservation");
     }
 
-    return response.data.data as Reservation;
+    return response.data.data as unknown as Reservation;
   } catch (error) {
     throw new Error(
       error instanceof Error ? error.message : "Failed to fetch reservation",
@@ -131,7 +131,7 @@ export const createReservationService = async (
       throw new Error(response.data.message || "Failed to create reservation");
     }
 
-    return response.data.data as Reservation;
+    return response.data.data as unknown as Reservation;
   } catch (error) {
     throw new Error(
       error instanceof Error ? error.message : "Failed to create reservation",
@@ -154,7 +154,7 @@ export const updateReservationService = async (
       throw new Error(response.data.message || "Failed to update reservation");
     }
 
-    return response.data.data as Reservation;
+    return response.data.data as unknown as Reservation;
   } catch (error) {
     throw new Error(
       error instanceof Error ? error.message : "Failed to update reservation",
@@ -176,7 +176,7 @@ export const cancelReservationService = async (
       throw new Error(response.data.message || "Failed to cancel reservation");
     }
 
-    return response.data.data as Reservation;
+    return response.data.data as unknown as Reservation;
   } catch (error) {
     throw new Error(
       error instanceof Error ? error.message : "Failed to cancel reservation",

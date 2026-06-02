@@ -68,15 +68,10 @@ body {
   }
 }
 
-/* Utility: line clamping */
-.line-clamp-1 {
-  @apply line-clamp-1;
-}
-
+/* Utility: line clamping (native CSS, no plugin needed in Tailwind v3) */
 .line-clamp-2 {
-  @apply line-clamp-2;
-}
-
-.line-clamp-3 {
-  @apply line-clamp-3;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }

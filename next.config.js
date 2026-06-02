@@ -8,7 +8,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  swcMinify: true,
+  // swcMinify is default true in Next.js 14 — no need to set explicitly
 
   // Image optimization
   images: {
