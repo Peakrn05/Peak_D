@@ -1,0 +1,82 @@
+/**
+ * Global Styles
+ * Tailwind CSS + custom styling for PetCare app
+ */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Root styles */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-white text-gray-900 font-sans;
+}
+
+/* Ant Design customizations */
+.ant-btn-primary {
+  @apply bg-gradient-to-r from-blue-500 to-purple-600 border-0;
+}
+
+.ant-btn-primary:hover {
+  @apply from-blue-600 to-purple-700;
+}
+
+.ant-input,
+.ant-input-number {
+  @apply rounded-lg;
+}
+
+.ant-card {
+  @apply rounded-xl border-gray-200;
+}
+
+.ant-modal {
+  @apply rounded-2xl;
+}
+
+.ant-modal-content {
+  @apply rounded-2xl;
+}
+
+/* Loading animation */
+.loading-spinner {
+  @apply inline-block animate-spin;
+}
+
+/* Gradient text */
+.gradient-text {
+  @apply bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent;
+}
+
+/* Service card hover effect */
+.service-card {
+  @apply transition-all duration-300 ease-in-out;
+}
+
+.service-card:hover {
+  @apply transform -translate-y-1 shadow-lg;
+}
+
+/* Responsive grid */
+@media (max-width: 768px) {
+  .container {
+    @apply px-4;
+  }
+}
+
+/* Utility: line clamping */
+.line-clamp-1 {
+  @apply line-clamp-1;
+}
+
+.line-clamp-2 {
+  @apply line-clamp-2;
+}
+
+.line-clamp-3 {
+  @apply line-clamp-3;
+}
